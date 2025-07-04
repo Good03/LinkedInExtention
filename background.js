@@ -1,3 +1,4 @@
+console.log("background.js loaded")
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "saveApplication") {
         browser.storage.local.get("applications").then(result => {
@@ -7,8 +8,6 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
             if (!exists) {
                 applications.push(message.application);
                 browser.storage.local.set({ applications });
-            } else {
-                console.log("Duplicate application detected, skipping save.");
             }
         });
     }

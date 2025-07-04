@@ -45,6 +45,15 @@
             color: #ddd;
             font-family: Arial, sans-serif;
             margin: 10px;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        #app-table-wrapper {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            border-radius: 4px;
         }
 
         h2 {
@@ -56,24 +65,33 @@
     </style>
 </head>
 <body>
-<h2>📄 Applications</h2>
-<table id="app-table" border="1" cellspacing="0" cellpadding="5">
-    <thead>
-    <tr>
-        <th>Job Title</th>
-        <th>Company</th>
-        <th id="date-header" style="cursor:pointer; user-select:none;">
-            Applied On <span id="sort-indicator">⬇️</span>
-        </th>
-        <th>Link</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody id="app-table-body">
-    <tr><td colspan="5" style="text-align:center;">Loading...</td></tr>
-    </tbody>
-</table>
+<div style="display: flex; align-items: center; margin-bottom: 15px;">
+    <h2 style="margin: 0;">📄 Applications</h2>
+    <div style="flex: 1;"></div>
+    <button id="clear-all-btn" style="background: #8b0000; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer;">
+        🧹 Clear All
+    </button>
+</div>
+<div id="app-table-wrapper">
+    <table id="app-table" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th id="date-header" style="cursor:pointer; user-select:none;">
+                Applied On <span id="sort-indicator">⬇️</span>
+            </th>
+            <th>Link</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody id="app-table-body">
+        <tr><td colspan="5" style="text-align:center;">Loading...</td></tr>
+        </tbody>
+    </table>
+</div>
+<script src="/popup.js">
 
-<script src="/popup.js"></script>
+</script>
 </body>
 </html>

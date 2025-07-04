@@ -1,6 +1,6 @@
 let currentSortOrder = "desc";
 let allApplications = [];
-
+console.log("popup.js loaded");
 function sortAndRender(applications) {
     const sortedApps = [...applications].sort((a, b) => {
         const dateA = new Date(a.timestamp);
@@ -65,12 +65,20 @@ function renderApplications(applications) {
 
 document.getElementById("date-header").addEventListener("click", () => {
     currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
-
     const indicator = document.getElementById("sort-indicator");
     indicator.textContent = currentSortOrder === "asc" ? "⬆️" : "⬇️";
 
     sortAndRender(allApplications);
 });
+
+document.getElementById("clear-all-btn").addEventListener("click", async () => {
+    if (confirm("Delete all saved applications?")) {
+        await browser.storage.local.set({ applications: [] });
+        allApplications = [];
+        sortAndRender([]);
+    }
+});
+
 
 browser.storage.local.get("applications").then(result => {
     allApplications = result.applications || [];
